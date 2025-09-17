@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mech-a-Bot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚙️ Mech-a-Bot</h1>
+      <p class="subtitle">Smart Thermal Analysis Assistant</p>
+    </header>
+
+    <section class="controls glass">
+      <p>Datasets are loaded from <code>/datasets</code> at startup.</p>
+      <button id="rebuildBtn">🔄 Rebuild Index</button>
+      <div id="rebuildStatus" class="muted"></div>
+    </section>
+
+    <section class="chat glass">
+      <div id="chatBox" class="chatbox"></div>
+      <div class="inputRow">
+        <input id="userInput" placeholder="Type your question..." />
+        <button id="sendBtn">➤</button>
+      </div>
+    </section>
+
+    <!-- ✅ New Section for Image Upload -->
+    <section class="upload glass">
+      <h3>📷 Upload an Image for Analysis</h3>
+      <input type="file" id="imageUpload" accept="image/*">
+      <button id="uploadBtn">Upload & Analyze</button>
+      <div id="uploadStatus" class="muted"></div>
+    </section>
+
+    <footer>
+      <small>⚡ Powered by <b>Groq API</b> • Ensure <code>GROQ_API_KEY</code> is set</small>
+    </footer>
+  </div>
+  <script src="/static/script.js"></script>
+  <script>
+    // ✅ Handle image upload
+    document.getElementById("uploadBtn").addEventListener("click", async () => {
+      const fileInput = document.getElementById("imageUpload");
+      const statusDiv = document.getElementById("uploadStatus");
+
+      if (!fileInput.files.length) {
+        statusDiv.textContent = "⚠️ Please select an image first.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("image", fileInput.files[0]);
+
+      statusDiv.textContent = "⏳ Uploading and analyzing...";
+
+      try {
+        const response = await fetch("/upload_image", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          statusDiv.textContent = "✅ Analysis complete!";
+          const chatBox = document.getElementById("chatBox");
+          chatBox.innerHTML += `<div class="botMsg">Image Analysis: ${result.analysis}</div>`;
+        } else {
+          statusDiv.textContent = "❌ " + result.error;
+        }
+      } catch (err) {
+        console.error(err);
+        statusDiv.textContent = "❌ Failed to upload image.";
+      }
+    });
+  </script>
+</body>
+</html>
