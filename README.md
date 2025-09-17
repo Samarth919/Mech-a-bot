@@ -27,7 +27,9 @@ python app.py
 ## ⚙️ Features
 
 Chatbot for Mechanical Engineers
+
 Reads from datasets.
+
 Summarizes information.
 Answers domain-specific questions.
 Thermal Image Analysis
