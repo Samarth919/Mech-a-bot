@@ -27,12 +27,12 @@ python app.py
 ## ⚙️ Features
 
 Chatbot for Mechanical Engineers. <br>
-Reads from datasets.
-Summarizes information.
-Answers domain-specific questions.
-Thermal Image Analysis
-Upload thermal images.
-Get results in JSON-like format with average RGB values, pixel zone percentages, and a brief description of heat distribution.
+Reads from datasets.<br>
+Summarizes information.<br>
+Answers domain-specific questions.<br>
+Thermal Image Analysis<br>
+Upload thermal images.<br>
+Get results in JSON-like format with average RGB values, pixel zone percentages, and a brief description of heat distribution.<br>
 
 
 ## 📌 Usage
