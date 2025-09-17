@@ -24,7 +24,7 @@ Add it to your environment variables or directly in the code where required.
 python app.py
 ```
 
-##⚙️ Features
+## ⚙️ Features
 
 Chatbot for Mechanical Engineers
 Reads from datasets.
@@ -35,13 +35,13 @@ Upload thermal images.
 Get results in JSON-like format with average RGB values, pixel zone percentages, and a brief description of heat distribution.
 
 
-##📌 Usage
+## 📌 Usage
 
 Start the chatbot.
 Rebuild the index so it can read from the datasets.
 Ask questions or upload thermal images for analysis.
 
-##🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 Python
 JavaScript
